@@ -1,0 +1,55 @@
+mixin filter-item(callback, text, active)
+  label.btn.btn-primary.btn-sm(class=(active)? "active": "", ng-click=callback)
+    input(type="radio", name="options", id="option1", autocomplete="off", checked)
+    span=text
+
+mixin input(name, id, model, type, text, placeholder)
+  div.form-group.row
+    label(for=id).col-sm-2.col-form-label.col-form-label-sm=text
+    .col-sm-10
+      input.form-control.form-control-sm(id=id, name=name, ng-model=model, type=type, placeholder=placeholder, required=required, autofocus=autofocus)
+
+menu-header(active-page="records")
+
+.container
+  section.records.top-padding
+    h2 Records
+    .loading(ng-show="$ctrl.loading") loading...
+    response-message(response="$ctrl.response")
+
+    .filter
+      .btn-group(data-toggle="buttons")
+        +filter-item("$ctrl.filterByLastMonth()", "Last Month", true)
+        +filter-item("$ctrl.activeFilterOptions()", "Custom")
+
+      .filter-options(ng-show="$ctrl.showFilterOptions")
+        form(ng-submit="$ctrl.loadPage(0)")
+          +input("from", "filter-from", "$ctrl.filter.from", "date", "From:")
+          +input("to", "filter-to", "$ctrl.filter.to", "date", "To:")
+          .row
+            .col-sm-2 &nbsp;
+            .col-sm-10
+              //- input.btn.btn-primary.btn-sm(type="submit", value="{{$ctrl.btnValue()}}")
+              input.btn.btn-primary.btn-sm(type="submit", value="Filter")
+
+    .table-records
+      .row.head
+        .cell Date
+        .cell Distance
+        .cell Time
+        .cell Average Speed
+        .cell Options
+      .row(ng-repeat="record in $ctrl.records")
+        record-item(record="record", on-remove="$ctrl.handleRemoveRecord()")
+
+    .no-data(ng-if="!$ctrl.records.length") No records =(
+
+    footer(ng-show="$ctrl.pages.length > 1")
+      h2 Pages
+      pagination(pages="$ctrl.pages", current-page="$ctrl.currentPage", on-load-page="$ctrl.handleLoadPage(value)")
+
+    hr
+
+    section
+      h4 Add new record
+      record-create(on-create="$ctrl.handleRecordCreated()", user-id="$ctrl.getUserId()")

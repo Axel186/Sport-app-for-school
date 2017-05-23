@@ -1,0 +1,31 @@
+menu-header(active-page="users")
+
+.container
+  section.users.top-padding
+    h2 Users
+
+    .loading(ng-show="$ctrl.loading") loading...
+    response-message(response="$ctrl.response")
+
+    .table-records(ng-if="$ctrl.users.length")
+      .row.head
+        .cell Email
+        .cell Full name
+        .cell Options
+      .row(ng-repeat="user in $ctrl.users")
+        //- .cell(scope="row", ng-bind="value")
+        .cell(ng-bind="user.email")
+        .cell(ng-bind="user.name")
+        .cell
+          div.options
+            button.btn.btn-outline-primary.btn-sm(ng-click="$ctrl.goTo('/records/'+user.uuid)", ng-if="$ctrl.account.type == '3'") Records
+            span &nbsp;
+            button.btn.btn-outline-primary.btn-sm(ng-click="$ctrl.goTo('/profile/'+user.uuid)") Edit
+            span &nbsp;
+            button.btn.btn-outline-danger.btn-sm(ng-click="$ctrl.removeUser(user)") Delete
+
+    .no-data(ng-if="!$ctrl.users.length") No users =(
+
+    footer(ng-show="$ctrl.pages.length > 1", style="padding-top: 20px")
+      h4 Pages
+      pagination(pages="$ctrl.pages", current-page="$ctrl.currentPage", on-load-page="$ctrl.handleLoadPage(value)")

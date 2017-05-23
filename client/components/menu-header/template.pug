@@ -1,0 +1,13 @@
+header.menu-block
+  nav.navbar.navbar-toggleable-md.navbar-inverse.bg-primary
+    .container
+      ul.navbar-nav.mr-auto
+        li.nav-item(ng-class="($ctrl.activePage == 'homepage')? 'active': ''")
+          a.nav-link(href="/") Homepage
+        li.nav-item(ng-class="($ctrl.activePage == 'records')? 'active': ''")
+          a.nav-link(href="/records") Records
+        li.nav-item(ng-class="($ctrl.activePage == 'profile')? 'active': ''")
+          a.nav-link(href="/profile") Profile
+        li.nav-item(ng-class="($ctrl.activePage == 'users')? 'active': ''", ng-if="$ctrl.account.type > 1")
+          a.nav-link(href="/users") Users
+      a.navbar-text.nav-link(href="/logout") Sign out

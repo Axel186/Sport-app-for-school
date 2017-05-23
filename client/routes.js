@@ -1,0 +1,40 @@
+'use strict';
+
+module.exports = [{
+  path: '/login',
+  name: 'Login',
+  component: 'loginPage',
+}, {
+  path: '/logout',
+  name: 'Logout',
+  component: 'logoutPage',
+}, {
+  path: '/registration',
+  name: 'Registration',
+  component: 'registrationPage',
+}, {
+  path: '/',
+  name: 'HomePage',
+  component: 'homePage',
+  useAsDefault: true
+}, {
+  path: '/records',
+  name: 'Records',
+  component: 'recordsPage',
+}, {
+  path: '/records/:userId',
+  name: 'Records',
+  component: 'recordsPage',
+}, {
+  path: '/profile',
+  name: 'Profile',
+  component: 'profilePage',
+}, {
+  path: '/profile/:userId',
+  name: 'Profile',
+  component: 'profilePage',
+}, {
+  path: '/users',
+  name: 'Users',
+  component: 'usersPage',
+}];

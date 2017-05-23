@@ -1,0 +1,43 @@
+mixin input(name, id, model, type, text, placeholder, required, autofocus, labelClass)
+  div.form-group.row
+    label.col-sm-2.col-form-label(for=id, class=labelClass)=text
+    .col-sm-10
+      input.form-control(id=id, name=name, ng-model=model, type=type, placeholder=placeholder, required=required, autofocus=autofocus)
+
+menu-header(active-page="profile")
+
+.container
+  section.profile.top-padding
+    h2 Profile
+
+    response-message(response="$ctrl.response")
+    form(ng-submit="$ctrl.submit()")
+
+      .row(style="line-height: 43px")
+        .col-sm-2 Email
+        .col-sm-10.sm(ng-bind="$ctrl.profile.email")
+
+      +input("name", "profile-name", "$ctrl.profile.name", "text", "Name", "David", true)
+
+      div.form-group.row(ng-if="$ctrl.currentRole > 1")
+        label.col-sm-2.col-form-label("inlineFormCustomSelect") Type
+        .col-sm-10
+          select.custom-select.mb-2.mr-sm-2.mb-sm-0#inlineFormCustomSelect(ng-model="$ctrl.profile.type")
+            option(ng-repeat="role in $ctrl.roles", value="{{role.value}}", ng-bind="role.text")
+
+      .row(ng-show="!$ctrl.passwordManager")
+        .col-sm-2 &nbsp;
+        .col-sm-10.sm
+          a(href='#', ng-click="$ctrl.showPasswordManager()") Change password
+
+      div.password-manager(ng-if="$ctrl.passwordManager")
+        hr
+        div(ng-if="$ctrl.account.type == 1 || !$ctrl.userId")
+          +input("password", "profile-password", "$ctrl.profile.password", "password", "Password", "Current password", false, false, "form-control-sm")
+        +input("newPassword", "profile-newPassword", "$ctrl.profile.newPassword", "password", "New Password", "Your new Password", false ,false, "form-control-sm")
+        +input("reNewPassword", "profile-reNewPassword", "$ctrl.profile.reNewPassword", "password", "Re-Password", "Repeat new Password", false, false, "form-control-sm")
+
+      .row(style="padding-top: 10px")
+        .col-sm-2 &nbsp;
+        .col-sm-10
+          input.btn.btn-primary(type="submit", value="Save", ng-disable="$ctrl.loading")

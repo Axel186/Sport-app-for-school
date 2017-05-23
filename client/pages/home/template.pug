@@ -1,0 +1,23 @@
+menu-header(active-page="homepage")
+
+.container
+  section.homepage.top-padding
+    h2 Weekly graph
+    canvas#line.chart.chart-bar(width="450", chart-colors="$ctrl.colors", chart-data="$ctrl.data", chart-labels="$ctrl.labels", chart-series="$ctrl.series", chart-options="$ctrl.options", chart-dataset-override="$ctrl.datasetOverride")
+
+    h3 Weekly average
+    hr
+    .circle(ng-bind="'Distance: '+$ctrl.prettyDisplay.distance($ctrl.avg.distance-($ctrl.avg.distance % 100))")
+    .circle(ng-bind="'Speed: '+$ctrl.prettyDisplay.speed($ctrl.avg.speed)")
+
+    .table-records
+      .row.head
+        .cell Date
+        .cell Distance
+        .cell Time
+        .cell Average Speed
+      .row(ng-repeat="(i, value) in $ctrl.labels")
+        .cell(scope="row",ng-bind="value")
+        .cell(ng-bind="$ctrl.prettyDisplay.distance($ctrl.results.distance[i])")
+        .cell(ng-bind="$ctrl.prettyDisplay.time($ctrl.results.time[i])")
+        .cell(ng-bind="$ctrl.prettyDisplay.speed($ctrl.results.speed[i])")

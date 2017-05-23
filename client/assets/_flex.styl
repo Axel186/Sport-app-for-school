@@ -1,0 +1,116 @@
+// display: flex
+flex-container($direction = null, $inline = 0 )
+  if !$inline
+    display: -webkit-box
+    display: -moz-box
+    display: -ms-flexbox
+    display: -webkit-flex
+    display: flex
+  else
+    display: -webkit-inline-box
+    display: -moz-inline-box
+    display: -ms-inline-flexbox
+    display: -webkit-inline-flex
+    display: inline-flex
+
+  if $direction
+    flex-direction($direction)
+
+// Flex-direction: column | column-reverse | row | row-reverse
+flex-direction( $direction )
+  if $direction == "column"
+    -webkit-box-orient: vertical
+    -moz-box-orient: vertical
+  else
+    -webkit-box-orient: horizontal
+    -moz-box-orient: horizontal
+
+  if $direction == "column-reverse" || $direction == "row-reverse"
+    -webkit-box-direction: reverse
+  else
+    -moz-box-direction: normal
+
+  -ms-flex-direction: $direction
+  -webkit-flex-direction: $direction
+  flex-direction: $direction
+
+// Flex
+flexibility( $grow, $shrink, $basis )
+  flex-container()
+
+  -webkit-box-flex: $grow $shrink
+  -moz-box-flex: $grow $shrink
+
+  -ms-flex: $grow, $shrink, $basis
+
+  -webkit-flex-grow: $grow
+  -webkit-flex-shrink: $shrink
+  -webkit-flex-basis: $basis
+
+  -webkit-flex: $grow, $shrink, $basis
+
+  flex-grow: $grow
+  flex-shrink: $shrink
+  flex-basis: $basis
+
+  flex: $grow, $shrink, $basis
+
+// align-items: baseline | center | flex-end | flex-start | stretch
+align-items( $position )
+  if $position == "flex-start"
+    -webkit-box-align: start
+    -moz-box-align: start
+    -ms-flex-align: start
+  else if $position == "flex-end"
+    -webkit-box-align: end
+    -moz-box-align: end
+    -ms-flex-align: end
+  else
+    -webkit-box-align: $position
+    -moz-box-align: $position
+    -ms-flex-align: $position
+
+  -webkit-align-items: $position
+  align-items: $position
+
+//align-self: auto | baseline | center | flex-end | flex-start | stretch
+align-self($position)
+  if $position == "flex-start"
+    -ms-flex-item-align: start
+  else if $position == "flex-end"
+    -ms-flex-item-align: end
+  else
+    -ms-flex-item-align: $position
+
+  -webkit-align-self: $position
+  align-self: $position
+
+// center | flex-end | flex-start | space-around | space-between
+justify-content($position)
+  if $position == "flex-start"
+    -webkit-box-pack: start
+    -moz-box-pack: start
+    -ms-flex-pack: start
+  else if $position == "flex-end"
+    -webkit-box-pack: end
+    -moz-box-pack: end
+    -ms-flex-pack: end
+  if $position == "space-around" || $position == "space-between"
+    -webkit-box-pack: justify
+    -moz-box-pack: justify
+    -ms-flex-pack: justify
+  else
+    -ms-flex-item-align: $position
+
+  -webkit-justify-content: $position
+  justify-content: $position
+
+// nowrap | wrap | wrap-reverse
+flex-wrap($position)
+  if $position == "nowrap"
+    -ms-flex-wrap: none
+  else
+    -ms-flex-wrap: $position
+
+  -webkit-flex-wrap: $position
+  flex-wrap: $position

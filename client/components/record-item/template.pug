@@ -1,0 +1,16 @@
+response-message(response="$ctrl.response")
+
+.wrapper(ng-show="$ctrl.mode == 'info'")
+  .cell(scope="row",ng-bind="$ctrl.prettyDisplay.date($ctrl.record.date)")
+  .cell(ng-bind="$ctrl.prettyDisplay.distance($ctrl.record.distance)")
+  .cell(ng-bind="$ctrl.prettyDisplay.time($ctrl.record.time)")
+  .cell(ng-bind="$ctrl.prettyDisplay.speed($ctrl.record.speed)")
+  .cell
+    div.options
+      button.btn.btn-outline-primary.btn-sm(ng-click="$ctrl.activeEditMode()") Edit
+      span &nbsp;
+      button.btn.btn-outline-danger.btn-sm(ng-click="$ctrl.removeRecord($ctrl.record)") Delete
+
+.wrapper.edit(ng-show="$ctrl.mode == 'edit'")
+  record-create(record="$ctrl.record", on-update="$ctrl.handleUpdate(value)", style="width: 100%")
+  button(ng-click="$ctrl.activeInfoMode()") Cancel

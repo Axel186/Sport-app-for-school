@@ -1,0 +1,17 @@
+mixin input(name, id, model, type, text, placeholder, required)
+  .form-group.row
+    label.col-sm-2.col-form-label.col-form-label-sm(for=id)=text
+    .col-sm-10
+      input.form-control.form-control-sm(id=id, name=name, ng-model=model, type=type, placeholder=placeholder, required=required)
+
+section.record-create
+  form(ng-submit="$ctrl.submit()")
+    response-message(response="$ctrl.response")
+
+    +input("recordTime", "recordTime", "$ctrl.recordEdit.time", "text", "Time", "01:20:00", true)
+    +input("recordDate", "recordDate", "$ctrl.recordEdit.date", "date", "Date", "", true)
+    +input("recordDistance", "recordDistance", "$ctrl.recordEdit.distance", "number", "Distance", "1500 meters", true)
+    .row
+      .col-sm-2 &nbsp;
+      .col-sm-10
+        input.btn.btn-primary.btn-sm(type="submit", value="{{$ctrl.btnValue()}}")

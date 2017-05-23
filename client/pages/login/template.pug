@@ -1,0 +1,20 @@
+mixin input(name, id, model, type, text, placeholder, required, autofocus)
+  div.form-group
+    label.sr-only(for=id)=text
+    input.form-control(id=id, name=name, ng-model=model, type=type, placeholder=placeholder, required=required, autofocus=autofocus)
+
+section.login-page
+  .container
+    .signin
+      h2 Login
+      form(ng-submit="$ctrl.submit()")
+        response-message(response="$ctrl.response")
+
+        +input("email", "email", "$ctrl.user.email", "email", "Email", "Email address", true, true)
+        +input("password", "password", "$ctrl.user.password", "password", "Password", "Password", true)
+
+        input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Sign in")
+
+        .more
+          hr
+          a(href="/registration") Sign up

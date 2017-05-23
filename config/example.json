@@ -1,0 +1,21 @@
+{
+  "isDev": "true",
+  "host": "host",
+  "port": 3030,
+  "mysql": "mysql://username:password@host:port/DB",
+  "public": "../public/",
+  "auth": {
+    "idField": "uuid",
+    "token": {
+      "secret": "b7XzerbDX99yuLvyjkDxDAdRH8TmeQezwihctPi6M57B5wfsjDxWbjvJEnpA8sZKwGna8+unXnJnQhE/s8mG+A=="
+    },
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "tokenEndpoint": "/api/auth/token",
+    "localEndpoint": "/api/auth/local",
+    "userEndpoint": "/api/users",
+    "local": {}
+  }
+}

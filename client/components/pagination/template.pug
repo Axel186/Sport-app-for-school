@@ -1,0 +1,5 @@
+nav
+  ul.pagination.pagination-sm
+    li.page-item(ng-repeat="page in $ctrl.pages", ng-class="(page == $ctrl.currentPage)? 'active':''")
+      a.page-link(href="#", ng-bind="page+1", ng-click="$ctrl.handleLoadPage(page)", ng-if="page != $ctrl.currentPage")
+      span.page-link(ng-bind="page+1", ng-if="page == $ctrl.currentPage")

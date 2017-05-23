@@ -1,0 +1,29 @@
+.table-records
+  flex-container(column)
+
+  .wrapper
+    width: 100%
+    flex-container(row)
+
+    &.edit
+      padding: 10px 20px
+
+  > .row, record-item
+    margin-left: 0px
+    flex-container(row)
+    width: 100%
+
+    &.head
+      font-weight: bold;
+      border-bottom: 2px solid #ccc
+
+    &:nth-child(2n)
+      background-color: rgba(0, 0, 0, 0.08);
+
+    .cell
+      padding: 0.75rem;
+      border-top: 1px solid #eceeef;
+
+      flexibility( 1, 1, auto )
+      align-items(center)
+      width: 25%
