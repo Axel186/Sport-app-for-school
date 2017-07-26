@@ -1,6 +1,7 @@
 # Learning Purposes
 
-The idea is to try "feathersJS".
+Learning purpose, tring to work with [Feathers](https://feathersjs.com/)
+Next project using AngularJS and Bootstrap 4 styling.
 
 ![Weekly Graph](screenshot.png)
 
